@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BTHREE</title>
+
+    <style>
+        .galeri{
+    padding:60px 20px;
+    background:#0f172a;
+    text-align:center;
+}
+
+.galeri h2{
+    font-size:35px;
+    margin-bottom:30px;
+    color:#ef4444;
+}
+
+.galeri-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+    max-width:1000px;
+    margin:auto;
+}
+
+.galeri-container img{
+    width:100%;
+    border-radius:15px;
+    box-shadow:0 0 15px rgba(0,0,0,0.5);
+    transition:0.3s;
+}
+
+.galeri-container img:hover{
+    transform:scale(1.05);
+}
+
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, sans-serif;
+        }
+
+        body{
+            background:#0f172a;
+            color:white;
+        }
+
+        .hero{
+            min-height:100vh;
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
+            align-items:center;
+            text-align:center;
+            padding:40px 20px;
+            background:linear-gradient(135deg,#111827,#1e293b);
+        }
+
+        .logo{
+            font-size:60px;
+            font-weight:bold;
+            color:#ef4444;
+            margin-bottom:20px;
+        }
+
+        .hero h1{
+            font-size:45px;
+            margin-bottom:15px;
+        }
+
+        .hero p{
+            max-width:700px;
+            font-size:18px;
+            color:#cbd5e1;
+            line-height:1.8;
+        }
+
+        .btn{
+            margin-top:30px;
+            padding:15px 35px;
+            background:#22c55e;
+            color:white;
+            text-decoration:none;
+            border-radius:10px;
+            font-size:18px;
+            transition:0.3s;
+        }
+
+        .btn:hover{
+            background:#16a34a;
+            transform:scale(1.05);
+        }
+
+        .layanan{
+            padding:60px 20px;
+            background:#111827;
+        }
+
+        .layanan h2{
+            text-align:center;
+            margin-bottom:40px;
+            font-size:38px;
+            color:#ef4444;
+        }
+
+        .list{
+            max-width:900px;
+            margin:auto;
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+            gap:20px;
+        }
+
+        .item{
+            background:#1e293b;
+            padding:20px;
+            border-radius:15px;
+            transition:0.3s;
+            font-size:18px;
+            font-weight:bold;
+        }
+
+        .item:hover{
+            transform:translateY(-8px);
+            background:#334155;
+        }
+
+        .footer{
+            text-align:center;
+            padding:20px;
+            background:#020617;
+            color:#94a3b8;
+        }
+
+        @media(max-width:768px){
+
+            .logo{
+                font-size:40px;
+            }
+
+            .hero h1{
+                font-size:32px;
+            }
+
+            .hero p{
+                font-size:16px;
+            }
+
+        }
+.sosmed{
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+    justify-content:center;
+    margin-top:20px;
+}
+
+.instagram{
+    background:#e1306c;
+}
+
+.facebook{
+    background:#1877f2;
+}
+
+.tiktok{
+    background:#000000;
+}
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <img src="logo.jpg" width="300">
+
+        <div class="logo">
+            
+        </div>
+
+        <h1>MENYEDIAKAN BERBAGAI KEBUTUHAN PROYEK</h1>
+
+        <p>
+            BTHREE menyediakan alat proyek dan jasa konstruksi
+            dengan pelayanan cepat, harga terjangkau,
+            dan kualitas terbaik.
+        </p>
+
+        <a href="https://wa.me/6285732249813" class="btn" target="_blank">
+            WhatsApp
+        </a>
+        <div class="sosmed">
+
+    <a href="https://www.instagram.com/bthree265?igsh=MXV2OXoybGN3M2Iycg==" class="btn instagram" target="_blank">
+        Instagram
+    </a>
+
+    <a href="https://www.facebook.com/share/18iSgpL5ir/" class="btn facebook" target="_blank">
+        Facebook
+    </a>
+
+    <a href="https://tiktok.com/@bthreee236" class="btn tiktok" target="_blank">
+        TikTok
+    </a>
+
+</div>
+
+    </section>
+<section class="galeri">
+
+    <h2>Galeri Proyek</h2>
+
+    <div class="galeri-container">
+
+        <img src="kenti.jpg">
+        <img src="kenti1.jpg">
+        <img src="kenti2.jpg">
+
+    </div>
+
+</section>
+
+    <section class="layanan">
+
+        <h2>Layanan Kami</h2>
+
+        <div class="list">
+
+            <div class="item">• Scaffolding / Stejing</div>
+
+            <div class="item">• Molen</div>
+
+            <div class="item">• Lif Cor</div>
+
+            <div class="item">• Fibrator</div>
+
+            <div class="item">• Sumur Bor</div>
+
+            <div class="item">• Stemper Kuda</div>
+
+            <div class="item">• Stemper Kodok</div>
+
+            <div class="item">• Drill Bobok Beton</div>
+
+            <div class="item">• Bekisting Cor & Plat Besi</div>
+
+            <div class="item">• Genset</div>
+
+            <div class="item">• Steam</div>
+
+            <div class="item">• Takecontrol</div>
+
+            <div class="item">• Mesin Las</div>
+
+            <div class="item">• Jasa Ukir Plat Besi</div>
+
+            <div class="item">• DLL</div>
+
+        </div>
+
+    </section>
+<section class="galeri">
+
+    <h2>Foto Alat</h2>
+
+    <div class="galeri-container">
+
+        <img src="alat1.jpg">
+        <img src="alat2.jpg">
+        <img src="alat3.jpg">
+        <img src="alat4.jpg">
+        <img src="alat5.jpg">
+
+    </div>
+
+</section>
+    <footer class="footer">
+    <p>© 2026 BTHREE - All Rights Reserved</p>
+
+    <br>
+
+    <p>
+        Alamat:
+        2HJ8+PV5, RT.02/RW.02, Ngimo, Prayungan,
+        Kecamatan Sawoo, Kabupaten Ponorogo,
+        Jawa Timur 63475, Indonesia
+    </p>
+    </footer>
+
+</body>
+</html>
