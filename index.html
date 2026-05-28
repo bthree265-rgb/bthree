@@ -5,118 +5,172 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BTHREE | Alat Proyek & Jasa Konstruksi</title>
 
-    <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
-        /* --- RESET & BASE STYLES --- */
+        /* --- RESET & SMOOTHING --- */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Inter', sans-serif;
             -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
             scroll-behavior: smooth;
         }
 
+        /* --- DYNAMIC iOS BACKGROUND (Diperbaiki agar kontras glassmorphism keluar) --- */
         body {
-            /* Latar belakang cerah bergradasi estetik (Kombinasi Sunset & Aurora khas iOS) */
-            background: linear-gradient(135deg, #ff7e5f 0%, #feb47b 30%, #86e3ce 70%, #d6e4f0 100%);
+            background: linear-gradient(135deg, #0b0f19 0%, #1e293b 40%, #0d9488 75%, #070a13 100%);
+            background-size: 400% 400%;
+            animation: gradientDynamic 15s ease infinite;
             background-attachment: fixed;
-            color: #0f172a; /* Mengubah teks utama jadi gelap agar kontras dengan bg cerah */
+            color: #f8fafc;
             overflow-x: hidden;
             position: relative;
             min-height: 100vh;
+            transition: background 0.5s ease;
         }
 
-        /* --- AMBIENT VIBRANT SHAPES (Bercak warna abstrak di latar belakang untuk efek blur kaca) --- */
-        .bg-shape-1 {
-            position: absolute;
-            top: 10%;
-            left: -10%;
-            width: 500px;
-            height: 500px;
-            background: #ff5e62;
-            border-radius: 50%;
-            filter: blur(100px);
-            z-index: -1;
-            opacity: 0.6;
-            animation: float Shape 8s ease-in-out infinite alternate;
+        body.light-theme {
+            background: linear-gradient(135deg, #f1f5f9 0%, #cbd5e1 40%, #ccfbf1 75%, #f8fafc 100%);
+            background-size: 400% 400%;
+            color: #0f172a;
         }
 
-        .bg-shape-2 {
+        @keyframes gradientDynamic {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Aura Glow di belakang untuk efek kedalaman */
+        .aura-glow {
             position: absolute;
-            top: 45%;
-            right: -10%;
             width: 600px;
             height: 600px;
-            background: #3a7bd5;
             border-radius: 50%;
-            filter: blur(120px);
+            filter: blur(140px);
+            opacity: 0.25;
             z-index: -1;
-            opacity: 0.5;
-            animation: floatShape 12s ease-in-out infinite alternate-reverse;
+            pointer-events: none;
         }
+        .aura-1 { top: 5%; left: -10%; background: #0ea5e9; animation: floatShape 10s ease-in-out infinite alternate; }
+        .aura-2 { top: 40%; right: -10%; background: #f97316; animation: floatShape 12s ease-in-out infinite alternate-reverse; }
+
+        body.light-theme .aura-1 { opacity: 0.3c; background: #38bdf8; }
+        body.light-theme .aura-2 { opacity: 0.2; background: #fdba74; }
 
         @keyframes floatShape {
-            0% { transform: translateY(0px) scale(1); }
-            100% { transform: translateY(40px) scale(1.1); }
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(30px, 50px) scale(1.1); }
         }
 
-        /* --- SUPREME WHITE GLASSMORPHISM IOS (Kontras Maksimal dengan BG Cerah) --- */
+        /* --- BASIC EXPERT GLASSMORPHISM STYLE (iOS BLUR) --- */
         .ios-glass {
-            /* Kaca putih transparan mewah */
-            background: rgba(255, 255, 255, 0.4); 
-            backdrop-filter: blur(30px) saturate(220%);
-            -webkit-backdrop-filter: blur(30px) saturate(220%);
-            /* Garis tepi kaca berkilau */
-            border: 1px solid rgba(255, 255, 255, 0.5); 
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(30px) saturate(210%);
+            -webkit-backdrop-filter: blur(30px) saturate(210%);
+            border: 1px solid rgba(255, 255, 255, 0.14);
             border-radius: 24px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+            box-shadow: 
+                0 10px 30px rgba(0, 0, 0, 0.2),
+                inset 0 1px 1px rgba(255, 255, 255, 0.15);
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        /* Hover interaktif pada kartu kaca */
-        .ios-glass:hover {
-            background: rgba(255, 255, 255, 0.55);
-            border-color: rgba(255, 255, 255, 0.7);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
-            transform: translateY(-5px);
-        }
-
-        /* --- BADGE STATUS --- */
-        .badge-status {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 16px;
-            background: rgba(255, 255, 255, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            border-radius: 100px;
-            font-size: 12px;
-            font-weight: 600;
+        body.light-theme .ios-glass {
+            background: rgba(255, 255, 255, 0.45);
+            border-color: rgba(255, 255, 255, 0.6);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
             color: #1e293b;
-            margin-bottom: 25px;
         }
 
-        .pulse-dot {
-            width: 8px;
-            height: 8px;
-            background-color: #16a34a;
+        .ios-glass:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+            transform: translateY(-2px);
+        }
+
+        /* --- FIXED SETTINGS CONTROL (DIPERBAIKI: Tidak menggeser layout) --- */
+        .top-right-settings {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 99999; 
+        }
+
+        .btn-settings {
+            width: 46px;
+            height: 46px;
             border-radius: 50%;
-            box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.7);
-            animation: pulse 1.6s infinite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+            color: #ffffff;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        body.light-theme .btn-settings {
+            background: rgba(15, 23, 42, 0.06);
+            border-color: rgba(15, 23, 42, 0.12);
+            color: #0f172a;
+        }
+        .btn-settings:hover {
+            transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        .btn-settings svg {
+            width: 22px;
+            height: 22px;
+            fill: currentColor;
+            transition: transform 0.5s ease;
+        }
+        .btn-settings:hover svg {
+            transform: rotate(60deg);
         }
 
-        @keyframes pulse {
-            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.5); }
-            70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(22, 163, 74, 0); }
-            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(22, 163, 74, 0); }
+        .settings-dropdown {
+            position: absolute;
+            top: 54px;
+            right: 0;
+            width: 180px;
+            padding: 6px;
+            border-radius: 16px;
+            opacity: 0;
+            transform: translateY(-10px) scale(0.95);
+            pointer-events: none;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .settings-dropdown.show {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: auto;
         }
 
-        /* --- HERO SECTION --- */
+        .dropdown-item {
+            padding: 10px 14px;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: background 0.2s;
+        }
+        .dropdown-item:hover { background: rgba(255, 255, 255, 0.12); }
+        body.light-theme .dropdown-item:hover { background: rgba(0, 0, 0, 0.05); }
+
+        /* --- HERO STYLE --- */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -124,213 +178,349 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 100px 20px 60px 20px;
+            padding: 80px 24px 60px 24px; /* Padding atas disesuaikan */
         }
 
-        .hero img {
-            border-radius: 28px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-            margin-bottom: 30px;
-            border: 2px solid rgba(255, 255, 255, 0.6);
+        .badge-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            margin-bottom: 25px;
         }
+        .badge-text {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: #cbd5e1;
+        }
+        body.light-theme .badge-text { color: #475569; }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #22c55e;
+            border-radius: 50%;
+            position: relative;
+        }
+        .pulse-dot::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: inherit;
+            border-radius: inherit;
+            animation: pulse-ring 1.5s cubic-bezier(0.215, 0.610, 0.355, 1) infinite;
+        }
+        @keyframes pulse-ring {
+            0% { transform: scale(0.5); opacity: 1; }
+            80%, 100% { transform: scale(2.5); opacity: 0; }
+        }
+
+        .hero-logo {
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            margin-bottom: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: transform 0.4s ease;
+            cursor: pointer;
+        }
+        .hero-logo:hover { transform: scale(1.03); }
 
         .hero h1 {
-            font-size: 46px;
+            font-size: 42px;
             font-weight: 800;
-            letter-spacing: -1.5px;
+            letter-spacing: -1px;
             margin-bottom: 20px;
-            max-width: 850px;
+            max-width: 800px;
             line-height: 1.2;
-            color: #0f172a;
+            background: linear-gradient(to bottom, #ffffff 70%, #cbd5e1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        body.light-theme .hero h1 {
+            background: linear-gradient(to bottom, #0f172a 70%, #475569);
+            -webkit-background-clip: text;
         }
 
         .hero p {
-            max-width: 650px;
+            max-width: 600px;
             font-size: 16px;
-            color: #334155;
-            line-height: 1.8;
-            margin-bottom: 40px;
-            font-weight: 400;
-        }
-
-        /* --- BUTTONS --- */
-        .btn {
-            display: inline-block;
-            padding: 18px 44px;
-            background: linear-gradient(135deg, #1e293b, #0f172a);
-            color: white;
-            text-decoration: none;
-            border-radius: 18px;
-            font-size: 16px;
-            font-weight: 600;
-            box-shadow: 0 10px 25px rgba(15, 23, 42, 0.25);
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            color: #cbd5e1;
+            line-height: 1.7;
             margin-bottom: 35px;
+            font-weight: 300;
         }
+        body.light-theme .hero p { color: #334155; }
 
-        .btn:hover {
+        /* --- iOS GLASS BUTTONS (DIPERBAIKI) --- */
+        .btn-main {
+            display: inline-block;
+            padding: 16px 40px;
+            font-size: 16px;
+            font-weight: 700;
+            color: #ffffff;
+            text-decoration: none;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            margin-bottom: 25px;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            transition: all 0.3s ease;
+            width: 100%;
+            max-width: 320px;
+        }
+        body.light-theme .btn-main {
+            background: rgba(15, 23, 42, 0.05);
+            border-color: rgba(15, 23, 42, 0.12);
+            color: #0f172a;
+        }
+        .btn-main:hover {
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
             transform: translateY(-2px);
-            box-shadow: 0 15px 30px rgba(15, 23, 42, 0.4);
-            background: linear-gradient(135deg, #0f172a, #000000);
         }
 
+        /* SOSMED CONTAINER (DIPERBAIKI agar responsif dan simetris) */
         .sosmed {
             display: flex;
-            gap: 14px;
+            gap: 12px;
+            width: 100%;
+            max-width: 320px;
             flex-wrap: wrap;
             justify-content: center;
         }
 
         .btn-social {
-            padding: 14px 32px;
-            color: #0f172a;
+            padding: 12px;
+            color: #ffffff;
             text-decoration: none;
             font-size: 14px;
             font-weight: 600;
+            flex: 1 1 calc(50% - 6px); /* Membagi 2 kolom rata kanan-kiri */
+            text-align: center;
+            border-radius: 14px;
         }
+        .btn-social.full-width {
+            flex: 1 1 100%; /* TikTok menjadi baris penuh di bawahnya */
+        }
+        body.light-theme .btn-social { color: #0f172a; }
 
-        /* --- SECTIONS TEXT STYLE --- */
+        /* --- SECTION HEADINGS --- */
         section.galeri, section.layanan {
-            padding: 90px 20px;
-            max-width: 1140px;
+            padding: 80px 24px;
+            max-width: 1200px;
             margin: auto;
         }
 
         section h2 {
-            font-size: 34px;
+            font-size: 32px;
             font-weight: 800;
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 40px;
             letter-spacing: -0.5px;
-            color: #0f172a;
+            background: linear-gradient(to bottom, #ffffff, #cbd5e1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        body.light-theme section h2 {
+            background: linear-gradient(to bottom, #0f172a, #334155);
+            -webkit-background-clip: text;
         }
 
         /* --- GALLERY GRID --- */
         .galeri-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 28px;
+            gap: 24px;
         }
 
         .galeri-card {
             overflow: hidden;
-            padding: 12px;
+            padding: 10px;
+            cursor: pointer;
         }
 
         .galeri-card img {
             width: 100%;
             height: 240px;
             object-fit: cover;
-            border-radius: 16px;
-            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            border-radius: 14px;
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
             display: block;
         }
+        .galeri-card:hover img { transform: scale(1.03); }
 
-        .galeri-card:hover img {
-            transform: scale(1.05);
-        }
-
-        /* --- LAYANAN GRID --- */
+        /* --- LAYANAN LIST GRID --- */
         .list {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 18px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 16px;
         }
 
         .item {
-            padding: 24px;
+            padding: 20px 24px;
             font-size: 15px;
             font-weight: 600;
-            color: #1e293b;
+            color: #f1f5f9;
             display: flex;
             align-items: center;
             gap: 14px;
         }
+        body.light-theme .item { color: #1e293b; }
 
         .item::before {
             content: '';
             display: inline-block;
-            width: 8px;
-            height: 8px;
-            background: #ef4444; /* Titik Merah Aksen BThree */
+            width: 6px;
+            height: 6px;
+            background: #ef4444; 
             border-radius: 50%;
-            box-shadow: 0 0 8px #ef4444;
+            box-shadow: 0 0 10px #ef4444;
         }
 
-        /* --- FOOTER --- */
+        /* --- FOOTER GLASS --- */
         .footer {
             text-align: center;
-            padding: 60px 20px;
+            padding: 50px 24px;
             margin-top: 80px;
-            border-top: 1px solid rgba(255, 255, 255, 0.4);
-            background: rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            color: #475569;
+            color: #94a3b8;
             font-size: 14px;
             line-height: 1.7;
+            border-radius: 28px 28px 0 0;
+            border-bottom: none;
+        }
+        body.light-theme .footer { color: #64748b; }
+        .footer p strong { color: #ffffff; font-weight: 700; }
+        body.light-theme .footer p strong { color: #0f172a; }
+
+        /* --- MODAL POP-UP OVERLAY --- */
+        .ios-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(7, 10, 19, 0.4);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            z-index: 999999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
         }
 
-        .footer p strong {
-            color: #0f172a;
+        .ios-modal.active { opacity: 1; pointer-events: auto; }
+
+        .modal-box {
+            position: relative;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 24px;
+            border-radius: 24px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+            transform: scale(0.9);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            text-align: center;
+            width: 300px;
+            max-width: 90%;
+        }
+        body.light-theme .modal-box {
+            background: rgba(255, 255, 255, 0.8);
+            border-color: rgba(255, 255, 255, 0.9);
         }
 
-        /* --- RESPONSIVE DESIGN --- */
-        @media(max-width: 768px){
-            .hero h1 { font-size: 34px; }
+        .ios-modal.active .modal-box { transform: scale(1); }
+        .modal-box h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+        .modal-box p { font-size: 15px; color: #cbd5e1; font-weight: 500; }
+        body.light-theme .modal-box p { color: #334155; }
+
+        .lightbox-content img {
+            max-width: 90%;
+            max-height: 75vh;
+            object-fit: contain;
+            border-radius: 14px;
+            display: block;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            color: currentColor;
+            font-size: 22px;
+            cursor: pointer;
+            width: 28px;
+            height: 28px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid rgba(255,255,255,0.15);
+        }
+
+        /* --- RESPONSIVE MOBILE ADAPTATION --- */
+        @media(max-width: 768px) {
+            .hero h1 { font-size: 32px; }
             .hero p { font-size: 14px; }
-            section h2 { font-size: 28px; }
-            .btn { width: 100%; text-align: center; }
-            .sosmed { width: 100%; }
-            .btn-social { flex: 1 1 40%; text-align: center; }
+            section h2 { font-size: 26px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Bola Warna Gradient Latar Belakang -->
-    <div class="bg-shape-1"></div>
-    <div class="bg-shape-2"></div>
+    <div class="aura-glow aura-1"></div>
+    <div class="aura-glow aura-2"></div>
 
-    <!-- HERO SECTION -->
+    <div class="top-right-settings">
+        <div class="btn-settings" id="settingsBtn" title="Pengaturan">
+            <svg viewBox="0 0 24 24">
+                <path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/>
+            </svg>
+        </div>
+        <div class="settings-dropdown ios-glass" id="settingsDropdown">
+            <div class="dropdown-item" id="themeToggleBtn"><span>🌓 Ganti Tema</span></div>
+            <div class="dropdown-item" id="aboutBtn"><span>ℹ️ Tentang</span></div>
+        </div>
+    </div>
+
     <section class="hero">
-        <!-- Badge Status Menyala -->
-        <div class="badge-status">
-            <span class="pulse-dot"></span> Pelayanan Cepat & Kualitas Terbaik
+        <div class="badge-status ios-glass">
+            <span class="pulse-dot"></span> 
+            <span class="badge-text">Premium Service Active</span>
         </div>
 
-        <!-- Menggunakan nama file gambar Anda -->
-        <img src="logo.jpg" alt="Logo BThree" width="180">
+        <img src="logo.jpg" alt="Logo BThree" width="140" class="hero-logo src-trigger">
 
         <h1>MENYEDIAKAN BERBAGAI KEBUTUHAN PROYEK</h1>
 
-        <p>
-            BTHREE menyediakan alat proyek dan jasa konstruksi dengan pelayanan cepat, harga terjangkau, dan kualitas terbaik berskala profesional.
-        </p>
+        <p>BTHREE menyediakan alat proyek dan jasa konstruksi dengan pelayanan cepat, harga terjangkau, dan kualitas terbaik berskala profesional.</p>
 
-        <a href="https://wa.me/6285732249813" class="btn" target="_blank">
-            Hubungi Sekarang
-        </a>
+        <a href="https://wa.me/6285732249813" class="btn-main ios-glass" target="_blank">Hubungi Sekarang</a>
 
-        <!-- Sosial Media iOS Glassmorphism Terang Cerah -->
         <div class="sosmed">
             <a href="https://www.instagram.com/bthree265?igsh=MXV2OXoybGN3M2Iycg==" class="btn-social ios-glass" target="_blank">Instagram</a>
             <a href="https://www.facebook.com/share/18iSgpL5ir/" class="btn-social ios-glass" target="_blank">Facebook</a>
-            <a href="https://tiktok.com/@bthreee236" class="btn-social ios-glass" target="_blank">TikTok</a>
+            <a href="https://tiktok.com/@bthreee236" class="btn-social ios-glass full-width" target="_blank">TikTok</a>
         </div>
     </section>
 
-    <!-- GALERI PROYEK -->
     <section class="galeri">
         <h2>Galeri Proyek</h2>
         <div class="galeri-container">
-            <div class="galeri-card ios-glass"><img src="kenti.jpg" alt="Proyek BThree"></div>
-            <div class="galeri-card ios-glass"><img src="kenti1.jpg" alt="Proyek BThree"></div>
-            <div class="galeri-card ios-glass"><img src="kenti2.jpg" alt="Proyek BThree"></div>
+            <div class="galeri-card ios-glass"><img src="kenti.jpg" alt="Proyek BThree" class="src-trigger"></div>
+            <div class="galeri-card ios-glass"><img src="kenti1.jpg" alt="Proyek BThree" class="src-trigger"></div>
+            <div class="galeri-card ios-glass"><img src="kenti2.jpg" alt="Proyek BThree" class="src-trigger"></div>
         </div>
     </section>
 
-    <!-- LAYANAN KAMI -->
     <section class="layanan">
         <h2>Layanan Kami</h2>
         <div class="list">
@@ -352,25 +542,82 @@
         </div>
     </section>
 
-    <!-- FOTO ALAT -->
     <section class="galeri">
         <h2>Foto Alat</h2>
         <div class="galeri-container">
-            <div class="galeri-card ios-glass"><img src="alat1.jpg" alt="Alat BThree"></div>
-            <div class="galeri-card ios-glass"><img src="alat2.jpg" alt="Alat BThree"></div>
-            <div class="galeri-card ios-glass"><img src="alat3.jpg" alt="Alat BThree"></div>
-            <div class="galeri-card ios-glass"><img src="alat4.jpg" alt="Alat BThree"></div>
-            <div class="galeri-card ios-glass"><img src="alat5.jpg" alt="Alat BThree"></div>
+            <div class="galeri-card ios-glass"><img src="alat1.jpg" alt="Alat BThree" class="src-trigger"></div>
+            <div class="galeri-card ios-glass"><img src="alat2.jpg" alt="Alat BThree" class="src-trigger"></div>
+            <div class="galeri-card ios-glass"><img src="alat3.jpg" alt="Alat BThree" class="src-trigger"></div>
+            <div class="galeri-card ios-glass"><img src="alat4.jpg" alt="Alat BThree" class="src-trigger"></div>
+            <div class="galeri-card ios-glass"><img src="alat5.jpg" alt="Alat BThree" class="src-trigger"></div>
         </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer class="footer">
+    <footer class="footer ios-glass">
         <p><strong>© 2026 BTHREE - All Rights Reserved</strong></p>
-        <p style="margin-top: 15px; font-weight: 400; max-width: 600px; margin-left: auto; margin-right: auto;">
+        <p style="margin-top: 12px; font-weight: 400; max-width: 650px; margin-left: auto; margin-right: auto;">
             Alamat: 2HJ8+PV5, RT.02/RW.02, Ngimo, Prayungan, Kecamatan Sawoo, Kabupaten Ponorogo, Jawa Timur 63475, Indonesia
         </p>
     </footer>
 
+    <div class="ios-modal" id="lightboxModal">
+        <div class="lightbox-content" style="position:relative;">
+            <div class="modal-close" id="lightboxClose">&times;</div>
+            <img src="" id="lightboxImg" alt="BThree Preview">
+        </div>
+    </div>
+
+    <div class="ios-modal" id="aboutModal">
+        <div class="modal-box ios-glass">
+            <div class="modal-close" id="aboutClose">&times;</div>
+            <h3>Informasi Aplikasi</h3>
+            <hr style="border: none; border-top: 1px solid rgba(255,255,255,0.15); margin: 12px 0;">
+            <p>dibuat oleh Chiko Indra S.</p>
+        </div>
+    </div>
+
+    <script>
+        const settingsBtn = document.getElementById('settingsBtn');
+        const settingsDropdown = document.getElementById('settingsDropdown');
+
+        // Dropdown menu toggle
+        settingsBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            settingsDropdown.classList.toggle('show');
+        });
+        document.addEventListener('click', () => settingsDropdown.classList.remove('show'));
+
+        // Ubah Tema
+        document.getElementById('themeToggleBtn').addEventListener('click', () => {
+            document.body.classList.toggle('light-theme');
+        });
+
+        // Modal Tentang Pembuat
+        const aboutModal = document.getElementById('aboutModal');
+        document.getElementById('aboutBtn').addEventListener('click', () => aboutModal.classList.add('active'));
+        document.getElementById('aboutClose').addEventListener('click', () => aboutModal.classList.remove('active'));
+
+        // Lightbox Zoom Gambar
+        const lightboxModal = document.getElementById('lightboxModal');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const triggers = document.querySelectorAll('.src-trigger');
+
+        triggers.forEach(trigger => {
+            trigger.addEventListener('click', () => {
+                // Pastikan gambar valid / bukan broken link teks alt
+                if(trigger.src && !trigger.src.includes('#')) {
+                    lightboxImg.src = trigger.src;
+                    lightboxModal.classList.add('active');
+                }
+            });
+        });
+        document.getElementById('lightboxClose').addEventListener('click', () => lightboxModal.classList.remove('active'));
+
+        // Menutup popup klik luar area kontainer utama
+        window.addEventListener('click', (e) => {
+            if (e.target === lightboxModal) lightboxModal.classList.remove('active');
+            if (e.target === aboutModal) aboutModal.classList.remove('active');
+        });
+    </script>
 </body>
 </html>
